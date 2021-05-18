@@ -1,19 +1,40 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Button from "@material-ui/core/Button";
 import { TextField, Typography } from "@material-ui/core";
 import { KeyboardDatePicker, KeyboardTimePicker } from "@material-ui/pickers";
 import React from "react";
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      content: "",
+      startDate: null,
+      startTime: null,
+    };
+  }
+
   render() {
     return (
       <div className="App">
         <div className="header">TODO LIST</div>
         <div className="input_area">
-          <TextField label="제목" size="normal" fullWidth required />
-          <TextField label="상세내용" size="normal" fullWidth multiline />
+          <TextField
+            label="제목"
+            size="normal"
+            margin="normal"
+            fullWidth
+            required
+          />
+          <TextField
+            label="상세내용"
+            size="normal"
+            margin="normal"
+            fullWidth
+            multiline
+          />
           <KeyboardDatePicker
-            disableToolbar
+            disableToolbarx
             variant="inline"
             format="yyyy/MM/DD"
             margin="normal"
@@ -36,6 +57,9 @@ class App extends React.Component {
           />
         </div>
         <div className="list_area"> 리스트 영역</div>
+        <Typography variant="body2" color="textSecondary" align="center">
+          {"Copyright ⓒ 박상준 " + new Date().getFullYear() + "."}
+        </Typography>
       </div>
     );
   }
