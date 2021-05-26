@@ -49,7 +49,7 @@ class App extends React.Component {
             fullWidth
             multiline
             value={this.state.content}
-            onChange={(e) => this.setState({ title: e.target.value })}
+            onChange={(e) => this.setState({ content: e.target.value })}
           />
           <KeyboardDatePicker
             disableToolbarx
