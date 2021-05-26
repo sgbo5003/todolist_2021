@@ -133,7 +133,7 @@ class App extends React.Component {
             }}
             value={this.state.endDate}
             onChange={(value) => {
-              this.setState({ startDate: value });
+              this.setState({ endDate: value });
             }}
           />
           <KeyboardTimePicker
@@ -147,7 +147,7 @@ class App extends React.Component {
             }}
             value={this.state.endTime}
             onChange={(value) => {
-              this.setState({ startTime: value });
+              this.setState({ endTime: value });
             }}
           />
           <Button
