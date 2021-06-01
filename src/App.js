@@ -36,7 +36,7 @@ class App extends React.Component {
 
   checkDateValidate() {
     const { startDate, endDate } = this.state;
-    if (startDate > endDate) {
+    if (startDate.isAfter(endDate)) {
       alert("시작 예정일이 종료 예정일보다 늦습니다. 다시 설정해주세요.");
       this.setState({ startDate: null, endDate: null });
     } else {
@@ -45,10 +45,12 @@ class App extends React.Component {
   }
 
   checkTimeValidate() {
-    const { startTime, endTime } = this.state;
-    if (endTime < startTime) {
-      alert("시작 시간이 종료 시간보다 늦습니다. 다시 설정해주세요.");
-      this.setState({ startTime: null, endTime: null });
+    const { startDate, endDate, startTime, endTime } = this.state;
+    if (startDate.isSame(endDate)) {
+      if (startTime.isAfter(endTime)) {
+        alert("시작 시간이 종료 시간보다 늦습니다. 다시 설정해주세요.");
+        this.setState({ startTime: null, endTime: null });
+      }
     } else {
       return true;
     }
@@ -146,14 +148,12 @@ class App extends React.Component {
             format="yyyy/MM/DD"
             margin="normal"
             label="종료 예정일"
-            onChange={(value) => console.log(value)}
             style={{ width: "50%" }}
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
             value={this.state.endDate}
             onChange={(value) => {
-              const { startDate } = this.state;
               this.setState({ endDate: value });
               this.checkDateValidate();
             }}
