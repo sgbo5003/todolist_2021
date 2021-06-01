@@ -34,6 +34,26 @@ class App extends React.Component {
     return true;
   }
 
+  checkDateValidate() {
+    const { startDate, endDate } = this.state;
+    if (startDate > endDate) {
+      alert("시작 예정일이 종료 예정일보다 늦습니다. 다시 설정해주세요.");
+      this.setState({ startDate: null, endDate: null });
+    } else {
+      return true;
+    }
+  }
+
+  checkTimeValidate() {
+    const { startTime, endTime } = this.state;
+    if (endTime < startTime) {
+      alert("시작 시간이 종료 시간보다 늦습니다. 다시 설정해주세요.");
+      this.setState({ startTime: null, endTime: null });
+    } else {
+      return true;
+    }
+  }
+
   saveTodoList() {
     if (this.checkValidate()) {
       const {
@@ -133,7 +153,9 @@ class App extends React.Component {
             }}
             value={this.state.endDate}
             onChange={(value) => {
+              const { startDate } = this.state;
               this.setState({ endDate: value });
+              this.checkDateValidate();
             }}
           />
           <KeyboardTimePicker
@@ -148,6 +170,7 @@ class App extends React.Component {
             value={this.state.endTime}
             onChange={(value) => {
               this.setState({ endTime: value });
+              this.checkTimeValidate();
             }}
           />
           <Button
